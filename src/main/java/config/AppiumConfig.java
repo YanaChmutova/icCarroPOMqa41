@@ -23,8 +23,8 @@ public class AppiumConfig {
         capabilities.setCapability("appActivity", ".SplashActivity");
 
         capabilities.setCapability("app",
-                "C:\\Users\\yana\\Documents\\Projects\\icCarroPOMqa41\\ilcarro-android.apk");
-// windows like: "C:\\Tools\\ilcarro-android.apk"
+                "/Users/julia/Documents/java/qa41/icarroPOMqa41/ilcarro-android.apk");
+// windows like: C:\\Tools\\ilcarro-android.apk
 
         try {
             driver = new AppiumDriver<>(

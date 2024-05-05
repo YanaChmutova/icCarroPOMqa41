@@ -49,4 +49,8 @@ public class BasePage {
         element.clear();
         element.sendKeys(text);
     }
+
+    protected void hideKeyBoard() {
+        AppiumConfig.getDriver().hideKeyboard();
+    }
 }

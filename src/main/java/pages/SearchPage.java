@@ -1,3 +1,4 @@
+
 package pages;
 import org.openqa.selenium.By;
 
@@ -11,6 +12,14 @@ public class SearchPage extends BasePage{
 
     By buttonsInMenu =
             By.xpath("//*[@resource-id='com.telran.ilcarro:id/title']");
+
+    By inputLocation = By.xpath("//*[@resource-id='com.telran.ilcarro:id/editLocation']");
+
+    By inputDateFrom = By.xpath("//*[@resource-id='com.telran.ilcarro:id/editFrom']");
+
+    By inputDateTo = By.xpath("//*[@resource-id='com.telran.ilcarro:id/editTo']");
+
+    By btnYalla = By.xpath("//*[@resource-id='com.telran.ilcarro:id/searchBtn']");
 
     public String getTextMainTitle() {
         wait(textTitleMain, 15000);
@@ -37,4 +46,12 @@ public class SearchPage extends BasePage{
         return getTextBase(buttonsInMenu).equals("My Cars");
     }
 
+    public void clickMyCars()  {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        clickBase(buttonsInMenu);
+    }
 }
