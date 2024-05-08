@@ -14,6 +14,11 @@ public class LoginPage extends BasePage{
     By btnYalla =
             By.xpath("//*[@resource-id='com.telran.ilcarro:id/loginBtn']");
 
+    By textErrorMessage =
+            By.xpath("//*[@resource-id='android:id/message']");
+
+    By alertOkBtn = By.xpath("//*[@resource-id='android:id/button1']");
+
     public void sendEmail(String email) {
         sendText(inputEmail, email);
     }
@@ -26,10 +31,17 @@ public class LoginPage extends BasePage{
         clickBase(btnYalla);
     }
 
-    public void positiveLogin(UserDTO userDTO) {
+    public void fillAllLoginFields(UserDTO userDTO) {
         sendEmail(userDTO.getUsername());
         sendPassword(userDTO.getPassword());
         clickYalla();
     }
 
+    public boolean verifyMessageError(String str) {
+        return getTextBase(textErrorMessage).equals(str);
+    }
+
+    public void clickOkPopUp() {
+        clickBase(alertOkBtn);
+    }
 }

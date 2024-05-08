@@ -1,6 +1,6 @@
-
 package tests;
 
+import io.qameta.allure.Allure;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -8,6 +8,7 @@ public class SplashScreenTest extends BaseTest {
 
     @Test
     public void versionTextTest () {
+        Allure.step("step1");
         String version = splashScreenPage.getTextVersion();
         Assert.assertEquals(version, "Version 1.0.0");
     }

@@ -1,11 +1,9 @@
-
 package pages;
 
+import config.AppiumConfig;
 import dto.CarDTO;
-import io.appium.java_client.MobileElement;
+import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.support.FindBy;
 
 public class AddNewCarPage extends BasePage{
 
@@ -32,7 +30,13 @@ public class AddNewCarPage extends BasePage{
     By btnAddCar =
             By.xpath("//*[@resource-id='com.telran.ilcarro:id/addCarBtn']");
 
-    By fuelDiesel = By.xpath("//*[@text='Diesel']");
+    String petrol = "";
+    By fuelInput = By.xpath("//*[@text='"+petrol+"']");
+
+    public By getLocatorFuel(String fuel) {
+        petrol = fuel;
+        return By.xpath("//*[@text='"+petrol+"']");
+    }
 
     public void addNewCar(CarDTO car) {
         try {
@@ -51,9 +55,11 @@ public class AddNewCarPage extends BasePage{
         sendText(inputCarClass, car.getCarClass());
         hideKeyBoard();
         //sendText(inputFuel, car.getFuelType());
-
+        petrol = car.getFuelType();
         clickBase(inputFuel);
-        clickBase(fuelDiesel);
+
+        clickBase(getLocatorFuel(car.getFuelType()));
+
         //-------------
         hideKeyBoard();
         sendText(inputYear, String.valueOf(car.getYear()));
@@ -62,6 +68,14 @@ public class AddNewCarPage extends BasePage{
         hideKeyBoard();
         sendText(inputAbout, car.getAbout());
         hideKeyBoard();
+//        //----------
+//        AppiumConfig.getDriver().findElement(MobileBy.AndroidUIAutomator(
+//                "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView("
+//                        + "new UiSelector().description(\"" + findElementBase(btnAddCar).getAttribute("content-desc") + "\"));"))
+//        //----------
+
+        //   scrollToElement(btnAddCar);
         clickBase(btnAddCar);
     }
+
 }

@@ -3,11 +3,16 @@ package pages;
 import config.AppiumConfig;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.LongPressOptions;
+import io.appium.java_client.touch.offset.ElementOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.html5.ApplicationCache;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.time.Duration;
 import java.util.List;
 
 public class BasePage {
@@ -50,7 +55,21 @@ public class BasePage {
         element.sendKeys(text);
     }
 
-    protected void hideKeyBoard() {
+    public void hideKeyBoard() {
         AppiumConfig.getDriver().hideKeyboard();
+    }
+
+    public void clickBackBtn() {
+        AppiumConfig.getDriver().navigate().back();
+    }
+
+    protected void scrollToElement(By by) {
+        MobileElement element = findElementBase(by);
+        TouchAction touchAction = new TouchAction(AppiumConfig.getDriver());
+        touchAction.longPress(LongPressOptions.longPressOptions()
+                        .withElement(ElementOption.element(element))
+                        .withDuration(Duration.ofSeconds(2))) // Adjust duration as needed
+                .release()
+                .perform();;
     }
 }

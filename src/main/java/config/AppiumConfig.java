@@ -23,7 +23,7 @@ public class AppiumConfig {
         capabilities.setCapability("appActivity", ".SplashActivity");
 
         capabilities.setCapability("app",
-                "/Users/julia/Documents/java/qa41/icarroPOMqa41/ilcarro-android.apk");
+                "C:\\Tools\\ilcarro-android.apk");
 // windows like: C:\\Tools\\ilcarro-android.apk
 
         try {
